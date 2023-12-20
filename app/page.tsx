@@ -67,6 +67,9 @@ export default function Home() {
     }
 
     const reader = body.getReader();
+
+    let html = "";
+
     const readChunk = async () => {
       const { done, value } = await reader.read();
       if (done) {
@@ -76,7 +79,7 @@ export default function Home() {
           return [
             ...newCurrent,
             {
-              content: htmlCode,
+              content: html,
               role: "assistant",
             },
           ];
@@ -84,7 +87,8 @@ export default function Home() {
         return;
       }
       const chunk = new TextDecoder().decode(value);
-      setHtmlCode((prev) => prev + chunk);
+      html += chunk;
+      setHtmlCode(html);
       await readChunk();
     };
     await readChunk();
