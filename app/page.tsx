@@ -5,12 +5,21 @@ import { useState } from "react";
 
 export default function Home() {
   const [htmlCode, setHtmlCode] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (loading) {
+      return;
+    }
 
     const formData = new FormData(event.currentTarget);
 
     const prompt = formData.get("prompt") as string;
+
+    setLoading(true);
+    setHtmlCode("");
 
     const result = await fetch("/api/tailwind", {
       method: "POST",
@@ -27,6 +36,7 @@ export default function Home() {
     const readChunk = async () => {
       const { done, value } = await reader.read();
       if (done) {
+        setLoading(false);
         //finish
         return;
       }
@@ -39,12 +49,13 @@ export default function Home() {
 
   return (
     <main className="h-full flex relative">
-      <div className="absolute top-4 left-0 right-0 flex items-center justify-center">
-        <progress className="progress w-56"></progress>
-      </div>
+      {loading ? (
+        <div className="absolute top-4 left-0 right-0 flex items-center justify-center">
+          <progress className="progress w-56"></progress>
+        </div>
+      ) : null}
 
       <pre>{htmlCode}</pre>
-      <div dangerouslySetInnerHTML={{ __html: htmlCode }}></div>
 
       <div className="fixed bottom-4 left-0 right-0 flex items-center justify-center">
         <form
