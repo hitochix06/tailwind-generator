@@ -4,6 +4,7 @@ import { Sparkles, Trash2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 
+
 const useTimedState = (state: unknown, delay: 2000) => {
   const [timedState, setTimedState] = useState(state);
 
@@ -27,6 +28,7 @@ const useTimedState = (state: unknown, delay: 2000) => {
 };
 
 export default function Home() {
+  const [prompt, setPrompt] = useState("");
   const [htmlCode, setHtmlCode] = useState("");
   const timedHtmlCode = useTimedState(htmlCode, 2000);
   const [messages, setMessages] = useState<ChatCompletionMessageParam[]>([]);
@@ -44,7 +46,7 @@ export default function Home() {
     const prompt = formData.get("prompt") as string;
 
     setLoading(true);
-    setHtmlCode('');
+    setHtmlCode("");
     const newMessages: ChatCompletionMessageParam[] = [
       ...messages,
       {
@@ -141,9 +143,12 @@ export default function Home() {
               <textarea
                 name="prompt"
                 className=" w-full textarea textarea-primary"
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
               />
               <div className="flex flex-col gap-1">
-                <button className="btn btn-primary btn-sm " type="submit">
+                <button className="btn btn-primary btn-sm " type="submit"
+                >
                   <Sparkles size={20} />
                 </button>
                 <button
@@ -151,7 +156,8 @@ export default function Home() {
                   type="button"
                   onClick={() => {
                     setMessages([]);
-                    setHtmlCode('');
+                    setHtmlCode("");
+                    setPrompt("");
                   }}
                 >
                   <Trash2 size={20} />
