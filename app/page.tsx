@@ -32,6 +32,7 @@ export default function Home() {
   const timedHtmlCode = useTimedState(htmlCode, 2000);
   const [messages, setMessages] = useState<ChatCompletionMessageParam[]>([]);
   const [loading, setLoading] = useState(false);
+  const [showCode, setShowCode] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -103,7 +104,7 @@ export default function Home() {
         </div>
       ) : null}
 
-      {/* <pre>{htmlCode}</pre> // for debug */}
+      {showCode ? <pre>{htmlCode}</pre> : null}
 
       {timedHtmlCode ? (
         <iframe
@@ -159,6 +160,13 @@ export default function Home() {
                   }}
                 >
                   <Trash2 size={20} />
+                </button>
+                <button
+                  className="btn btn-neutral btn-sm "
+                  type="button"
+                  onClick={() => setShowCode(!showCode)}
+                >
+                  {showCode ? 'Cacher le code' : 'Afficher le code'}
                 </button>
               </div>
             </fieldset>
