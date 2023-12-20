@@ -57,7 +57,7 @@ export default function Home() {
 
     const result = await fetch("/api/tailwind", {
       method: "POST",
-      body: JSON.stringify({ prompt }),
+      body: JSON.stringify({ newMessages }),
     });
 
     const body = result.body;
@@ -71,7 +71,16 @@ export default function Home() {
       const { done, value } = await reader.read();
       if (done) {
         setLoading(false);
-        //finish
+        setMessages((current) => {
+          const newCurrent = current.filter((c) => c.role !== "assistant");
+          return [
+            ...newCurrent,
+            {
+              content: htmlCode,
+              role: "assistant",
+            },
+          ];
+        });
         return;
       }
       const chunk = new TextDecoder().decode(value);
@@ -112,7 +121,10 @@ export default function Home() {
 
       <div className="fixed bottom-4 left-0 right-0 flex  items-center justify-center">
         <div className="p-4 bg-base-200 max-w-lg w-full rounded-lg shadow-xl ">
-          <div className="max-w-full" style={{ maxHeight: 200 }}>
+          <div
+            className="max-w-full overflow-auto flex flex-col-gap-1"
+            style={{ maxHeight: 150 }}
+          >
             {messages
               .filter((m) => m.role === "user")
               .map((message, index) => (
