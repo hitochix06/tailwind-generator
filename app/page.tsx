@@ -111,20 +111,27 @@ export default function Home() {
       ) : null}
 
       <div className="fixed bottom-4 left-0 right-0 flex  items-center justify-center">
-        <form
-          className="p-4 bg-base-200 max-w-lg w-full rounded-lg shadow-xl "
-          onSubmit={handleSubmit}
-        >
-          <fieldset className="flex gap-4 items-start">
-            <textarea
-              name="prompt"
-              className=" w-full textarea textarea-primary"
-            />
-            <button className="btn btn-primary btn-sm " type="submit">
-              <Sparkles size={20} />
-            </button>
-          </fieldset>
-        </form>
+        <div className="p-4 bg-base-200 max-w-lg w-full rounded-lg shadow-xl ">
+          <div className="max-w-full" style={{ maxHeight: 200 }}>
+            {messages
+              .filter((m) => m.role === "user")
+              .map((message, index) => (
+                <div key={index}>You: {String(message.content)}</div>
+              ))}
+          </div>
+
+          <form onSubmit={handleSubmit}>
+            <fieldset className="flex gap-4 items-start">
+              <textarea
+                name="prompt"
+                className=" w-full textarea textarea-primary"
+              />
+              <button className="btn btn-primary btn-sm " type="submit">
+                <Sparkles size={20} />
+              </button>
+            </fieldset>
+          </form>
+        </div>
       </div>
     </main>
   );
