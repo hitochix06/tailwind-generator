@@ -34,3 +34,7 @@ Vous pouvez consulter [le référentiel GitHub Next.js] (https://github.com/verc
 La façon la plus simple de déployer votre application Next.js est d’utiliser la [plateforme Vercel] (https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) des créateurs de Next.js.
 
 Pour en savoir plus, consultez notre [Next.js deployment documentation] (https://nextjs.org/docs/deployment).
+
+
+rajouter ce code si besoin 
+* If the prompt ask you for something that not respect the criteria, and IMPOSSIBLE to create with HTML and Tailwind  only,  return "<p class="text-red-500">I can't do that, sorry.</p>".
