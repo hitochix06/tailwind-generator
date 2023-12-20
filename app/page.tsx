@@ -2,6 +2,7 @@
 
 import { Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 
 const useTimedState = (state: unknown, delay: 2000) => {
   const [timedState, setTimedState] = useState(state);
@@ -28,6 +29,7 @@ const useTimedState = (state: unknown, delay: 2000) => {
 export default function Home() {
   const [htmlCode, setHtmlCode] = useState("");
   const timedHtmlCode = useTimedState(htmlCode, 2000);
+  const [messages, setMessages] = useState<ChatCompletionMessageParam[]>([]);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -43,6 +45,15 @@ export default function Home() {
 
     setLoading(true);
     setHtmlCode("");
+    const newMessages: ChatCompletionMessageParam[] = [
+      ...messages,
+      {
+        content: prompt,
+        role: "user",
+      },
+    ];
+
+    setMessages(newMessages);
 
     const result = await fetch("/api/tailwind", {
       method: "POST",
