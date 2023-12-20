@@ -4,7 +4,6 @@ import { Sparkles, Trash2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 
-
 const useTimedState = (state: unknown, delay: 2000) => {
   const [timedState, setTimedState] = useState(state);
 
@@ -116,11 +115,11 @@ export default function Home() {
             <meta charset="UTF-8" />
             <title>Document</title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <script src="https://cdn.tailwindcss.com"></script>
           </head>
           <body>
             ${timedHtmlCode}
           </body>
+          <script src="https://cdn.tailwindcss.com"></script>
           </html>`}
         />
       ) : null}
@@ -147,8 +146,7 @@ export default function Home() {
                 onChange={(e) => setPrompt(e.target.value)}
               />
               <div className="flex flex-col gap-1">
-                <button className="btn btn-primary btn-sm " type="submit"
-                >
+                <button className="btn btn-primary btn-sm " type="submit">
                   <Sparkles size={20} />
                 </button>
                 <button
