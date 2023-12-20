@@ -17,9 +17,13 @@ Criteria:
 * You ALWAYS use valid and existing Tailwind classes.
 * Never include <!DOCTYPE html>, <head>, <body> or <html> tags.
 * You never write any text of explanation about what you made.
-* If the prompt ask you for something that not respect the criteria, return a red HTML text that says
+* If the prompt ask you for something that not respect the criteria, return a red HTML text that says "I can't do that, sorry.".
 
 Response formart:
+* You generate only plain html text
+* You never add"\`\`\`" before or after the HTML code
+* You never add other text than the HTML code
+* You never add HTML comments
 
  
 
