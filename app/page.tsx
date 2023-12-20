@@ -44,7 +44,7 @@ export default function Home() {
     const prompt = formData.get("prompt") as string;
 
     setLoading(true);
-    setHtmlCode("");
+    setHtmlCode('');
     const newMessages: ChatCompletionMessageParam[] = [
       ...messages,
       {
@@ -151,7 +151,7 @@ export default function Home() {
                   type="button"
                   onClick={() => {
                     setMessages([]);
-                    setHtmlCode("");
+                    setHtmlCode('');
                   }}
                 >
                   <Trash2 size={20} />
