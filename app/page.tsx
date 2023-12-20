@@ -17,9 +17,24 @@ export default function Home() {
       body: JSON.stringify({ prompt }),
     });
 
-    const json = await result.json();
+    const body = result.body;
+    if (!body) {
+      alert("une erreur s'est produite");
+      return;
+    }
 
-    setHtmlCode(json.code);
+    const reader = body.getReader();
+    const readChunk = async () => {
+      const { done, value } = await reader.read();
+      if (done) {
+        //finish
+        return;
+      }
+      const chunk = new TextDecoder().decode(value);
+      setHtmlCode((prev) => prev + chunk);
+      await readChunk();
+    };
+    await readChunk();
   };
 
   return (
