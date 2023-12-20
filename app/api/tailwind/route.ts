@@ -18,7 +18,7 @@ Criteria:
 * You ALWAYS use valid and existing Tailwind classes.
 * Never include <!DOCTYPE html>, <head>, <body> or <html> tags.
 * You never write any text of explanation about what you made.
-* If the prompt ask you for something that not respect the criteria, return "<p class="text-red-500">I can't do that, sorry.</p>".
+* If the prompt ask you for something that not respect the criteria, and IMPOSSIBLE to create with HTML and Tailwind  only,  return "<p class="text-red-500">I can't do that, sorry.</p>".
 * You NEVER write any HTML comment.
 
 Response formart:
@@ -35,10 +35,7 @@ export const POST = async (req: Request) => {
   const response = await openai.chat.completions.create({
     model: "gpt-4-1106-preview",
     stream: true,
-    messages: [{ role: "assistant", content: systemPrompt }, ...messages,
-   
-   
-   ],
+    messages: [{ role: "assistant", content: systemPrompt }, ...messages],
   });
 
   const stream = OpenAIStream(response);

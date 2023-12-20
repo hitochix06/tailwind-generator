@@ -57,7 +57,7 @@ export default function Home() {
 
     const result = await fetch("/api/tailwind", {
       method: "POST",
-      body: JSON.stringify({ newMessages }),
+      body: JSON.stringify({ messages: newMessages }),
     });
 
     const body = result.body;
