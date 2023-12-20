@@ -56,6 +56,26 @@ export default function Home() {
       ) : null}
 
       <pre>{htmlCode}</pre>
+      {htmlCode ? (
+        <iframe
+          className="w-full h-full"
+          // add tailwind cdn <script src="https://cdn.tailwindcss.com"></script> and htmlcode
+          srcDoc={`<!DOCTYPE html> 
+          <html lang="fr">
+          <head>
+            <meta charset="UTF-8" />
+            <title>Document</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <link
+              rel="stylesheet"
+              href="https://cdn.tailwindcss.com"
+          </head>
+          <body>
+            ${htmlCode}
+          </body>
+          </html>`}
+        />
+      ) : null}
 
       <div className="fixed bottom-4 left-0 right-0 flex items-center justify-center">
         <form
