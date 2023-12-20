@@ -26,7 +26,10 @@ export default function Home() {
         <progress className="progress w-56"></progress>
       </div>
       <div className="fixed bottom-4 left-0 right-0 flex items-center justify-center">
-        <form className="p-4 bg-base-200 max-w-lg w-full">
+        <form
+          className="p-4 bg-base-200 max-w-lg w-full "
+          onSubmit={handleSubmit}
+        >
           <fieldset className="flex gap-4 items-start">
             <textarea
               name="prompt"
