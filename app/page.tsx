@@ -1,6 +1,6 @@
 "use client";
 
-import { Sparkles } from "lucide-react";
+import { Sparkles, Trash2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 
@@ -126,7 +126,7 @@ export default function Home() {
       <div className="fixed bottom-4 left-0 right-0 flex  items-center justify-center">
         <div className="p-4 bg-base-200 max-w-lg w-full rounded-lg shadow-xl ">
           <div
-            className="max-w-full overflow-auto flex flex-col-gap-1"
+            className="max-w-full overflow-auto flex flex-col gap-1"
             style={{ maxHeight: 150 }}
           >
             {messages
@@ -142,9 +142,21 @@ export default function Home() {
                 name="prompt"
                 className=" w-full textarea textarea-primary"
               />
-              <button className="btn btn-primary btn-sm " type="submit">
-                <Sparkles size={20} />
-              </button>
+              <div className="flex flex-col gap-1">
+                <button className="btn btn-primary btn-sm " type="submit">
+                  <Sparkles size={20} />
+                </button>
+                <button
+                  className="btn btn-neutral btn-sm "
+                  type="button"
+                  onClick={() => {
+                    setMessages([]);
+                    setHtmlCode("");
+                  }}
+                >
+                  <Trash2 size={20} />
+                </button>
+              </div>
             </fieldset>
           </form>
         </div>
