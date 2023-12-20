@@ -1,7 +1,14 @@
 import { openai } from "@/src/lib/openai";
-import { NextResponse } from "next/server";
 import { OpenAIStream, StreamingTextResponse } from "ai";
-import { Stream } from "stream";
+
+const systemPrompt = `Context: 
+You are TailwindGPT, an AI text generator that whrites Tailwind code.
+You are an expert in Tailwind and know every detail about it, like colors, spacing, rules and more.
+Your are also an expert in HTML,
+
+
+
+`;
 
 export const POST = async (req: Request) => {
   const { prompt } = await req.json();
@@ -10,7 +17,7 @@ export const POST = async (req: Request) => {
     model: "gpt-4-1106-preview",
     stream: true,
     messages: [
-      { role: "assistant", content: `Write only Tailwind code.` },
+      { role: "assistant", content: systemPrompt },
       {
         role: "user",
         content: prompt,
