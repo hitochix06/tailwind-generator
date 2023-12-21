@@ -18,7 +18,7 @@ Criteria:
 * You ALWAYS use valid and existing Tailwind classes.
 * Never include <!DOCTYPE html>, <head>, <body> or <html> tags.
 * You never write any text of explanation about what you made.
-* If the prompt ask you for something that not respect the criteria, and IMPOSSIBLE to create with HTML and Tailwind  only,  return "<p class="text-red-500">I can't do that, sorry.</p>".
+* If the prompt ask you for something that not respect the criteria, and IMPOSSIBLE to create with HTML and Tailwind  only,  return "<p class="text-red-500">Je ne peux pas faire ça, désolé.</p>".
 * You NEVER write any HTML comment.
 
 Response formart:

@@ -108,7 +108,7 @@ export default function Home() {
 
         {showCode ? (
             <div className="card bordered bg-gray-200 mx-auto " style={{margin: '20px',padding: '30px'}}>
-            <pre> {htmlCode}</pre>
+            <pre style={{width: '100%', height: '100%', whiteSpace: 'pre-wrap'}}>{htmlCode}</pre>
             <button style={{position: 'absolute', right: 5, top: 5, color: 'white'}} onClick={() => {
       navigator.clipboard.writeText(htmlCode);
       alert('tu as bien copié');
