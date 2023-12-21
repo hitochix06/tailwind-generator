@@ -97,14 +97,15 @@ export default function Home() {
   };
 
   return (
-    <main className="h-full flex relative">
+    <main className="h-full">
       {loading ? (
         <div className="absolute top-4 left-0 right-0 flex items-center justify-center">
           <progress className="progress w-56"></progress>
         </div>
       ) : null}
 
-      {showCode ? <pre>{htmlCode}</pre> : null}
+{showCode ? <pre>{htmlCode}</pre> : null}
+
 
       {timedHtmlCode ? (
         <iframe
@@ -124,6 +125,7 @@ export default function Home() {
           </html>`}
         />
       ) : null}
+
 
       <div className="fixed bottom-4 left-0 right-0 flex  items-center justify-center">
         <div className="p-4 bg-base-200 max-w-lg w-full rounded-lg shadow-xl ">
