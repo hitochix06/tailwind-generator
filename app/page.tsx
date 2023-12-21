@@ -33,6 +33,7 @@ export default function Home() {
   const [messages, setMessages] = useState<ChatCompletionMessageParam[]>([]);
   const [loading, setLoading] = useState(false);
   const [showCode, setShowCode] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -111,12 +112,19 @@ export default function Home() {
             <pre style={{width: '100%', height: '100%', whiteSpace: 'pre-wrap'}}>{htmlCode}</pre>
             <button style={{position: 'absolute', right: 5, top: 5, color: 'white'}} onClick={() => {
       navigator.clipboard.writeText(htmlCode);
-      alert('tu as bien copié');
+      setShowAlert(true);
+      setTimeout(() => setShowAlert(false), 2000);
     }}>
       <Clipboard size={25} />
     </button>
           </div>
         ) : null}
+
+{showAlert ? (
+  <div className="bg-green-500 text-white px-2 py-1 rounded absolute text-sm" style={{right: '5px', top: '60px'}}>
+    Tu as bien copié !
+  </div>
+) : null}
 
         {timedHtmlCode ? (
           <iframe
