@@ -102,40 +102,51 @@ export default function Home() {
     };
     await readChunk();
   };
-  
 
   return (
     <main className="h-full ">
-     
-        {loading ? (
-          <div className="absolute top-4 left-0 right-0 flex items-center justify-center">
-            <progress className="progress w-56"></progress>
-          </div>
-        ) : null}
+      {loading ? (
+        <div className="absolute top-4 left-0 right-0 flex items-center justify-center">
+          <progress className="progress w-56"></progress>
+        </div>
+      ) : null}
 
-        {showCode ? (
-            <div className="card bordered bg-gray-200 mx-auto " style={{margin: '20px',padding: '30px'}}>
-            <pre style={{width: '100%', height: '100%', whiteSpace: 'pre-wrap'}}>{htmlCode}</pre>
-            <button style={{position: 'absolute', right: 5, top: 5, color: 'white'}} onClick={() => {
-      navigator.clipboard.writeText(htmlCode);
-      setShowAlert(true);
-      setTimeout(() => setShowAlert(false), 2000);
-    }}>
-      <Clipboard size={25} />
-    </button>
-          </div>
-        ) : null}
+      {showCode ? (
+        <div
+          className="card bordered bg-gray-200 mx-auto "
+          style={{ margin: "20px", padding: "30px" }}
+        >
+          <pre
+            style={{ width: "100%", height: "100%", whiteSpace: "pre-wrap" }}
+          >
+            {htmlCode}
+          </pre>
+          <button
+            style={{ position: "absolute", right: 5, top: 5, color: "white" }}
+            onClick={() => {
+              navigator.clipboard.writeText(htmlCode);
+              setShowAlert(true);
+              setTimeout(() => setShowAlert(false), 2000);
+            }}
+          >
+            <Clipboard size={25} />
+          </button>
+        </div>
+      ) : null}
 
-{showAlert ? (
-  <div className="bg-green-500 text-white px-2 py-1 rounded absolute text-sm" style={{right: '5px', top: '60px'}}>
-    Tu as bien copié !
-  </div>
-) : null}
+      {showAlert ? (
+        <div
+          className="bg-green-500 text-white px-2 py-1 rounded absolute text-sm"
+          style={{ right: "5px", top: "60px" }}
+        >
+          Tu as bien copié !
+        </div>
+      ) : null}
 
-        {timedHtmlCode ? (
-          <iframe
-            className="w-full h-full"
-            srcDoc={`<!DOCTYPE html> 
+      {timedHtmlCode ? (
+        <iframe
+          className="w-full h-full"
+          srcDoc={`<!DOCTYPE html> 
             <html lang="fr">
             <head>
               <meta charset="UTF-8" />
@@ -147,9 +158,8 @@ export default function Home() {
             </body>
             <script src="https://cdn.tailwindcss.com"></script>
             </html>`}
-          />
-        ) : null}
-    
+        />
+      ) : null}
 
       <div className="fixed bottom-4 left-0 right-0 flex  items-center justify-center">
         <div className="p-4 bg-base-200 max-w-lg w-full rounded-lg shadow-xl ">
@@ -192,7 +202,7 @@ export default function Home() {
                   type="button"
                   onClick={() => setShowCode(!showCode)}
                 >
-                  {showCode ? 'Cacher le code' : 'Afficher le code'}
+                  {showCode ? "Cacher le code" : "Afficher le code"}
                 </button>
               </div>
             </fieldset>
