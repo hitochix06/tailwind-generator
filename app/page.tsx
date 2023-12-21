@@ -1,6 +1,6 @@
 "use client";
 
-import { Sparkles, Trash2 } from "lucide-react";
+import { Sparkles, Trash2, Clipboard } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 
@@ -95,37 +95,47 @@ export default function Home() {
     };
     await readChunk();
   };
+  
 
   return (
-    <main className="h-full">
-      {loading ? (
-        <div className="absolute top-4 left-0 right-0 flex items-center justify-center">
-          <progress className="progress w-56"></progress>
-        </div>
-      ) : null}
+    <main className="h-full ">
+     
+        {loading ? (
+          <div className="absolute top-4 left-0 right-0 flex items-center justify-center">
+            <progress className="progress w-56"></progress>
+          </div>
+        ) : null}
 
-{showCode ? <pre>{htmlCode}</pre> : null}
+        {showCode ? (
+            <div className="card bordered bg-gray-200 mx-auto " style={{margin: '20px',padding: '30px'}}>
+            <pre> {htmlCode}</pre>
+            <button style={{position: 'absolute', right: 5, top: 5, color: 'white'}} onClick={() => {
+      navigator.clipboard.writeText(htmlCode);
+      alert('tu as bien copié');
+    }}>
+      <Clipboard size={25} />
+    </button>
+          </div>
+        ) : null}
 
-
-      {timedHtmlCode ? (
-        <iframe
-          className="w-full h-full"
-          // add tailwind cdn <script src="https://cdn.tailwindcss.com"></script> and htmlcode
-          srcDoc={`<!DOCTYPE html> 
-          <html lang="fr">
-          <head>
-            <meta charset="UTF-8" />
-            <title>Document</title>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          </head>
-          <body>
-            ${timedHtmlCode}
-          </body>
-          <script src="https://cdn.tailwindcss.com"></script>
-          </html>`}
-        />
-      ) : null}
-
+        {timedHtmlCode ? (
+          <iframe
+            className="w-full h-full"
+            srcDoc={`<!DOCTYPE html> 
+            <html lang="fr">
+            <head>
+              <meta charset="UTF-8" />
+              <title>Document</title>
+              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            </head>
+            <body>
+              ${timedHtmlCode}
+            </body>
+            <script src="https://cdn.tailwindcss.com"></script>
+            </html>`}
+          />
+        ) : null}
+    
 
       <div className="fixed bottom-4 left-0 right-0 flex  items-center justify-center">
         <div className="p-4 bg-base-200 max-w-lg w-full rounded-lg shadow-xl ">
