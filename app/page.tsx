@@ -46,6 +46,12 @@ export default function Home() {
 
     const prompt = formData.get("prompt") as string;
 
+    // Check if the text field is empty
+    if (!prompt.trim()) {
+      alert("Veuillez taper du texte avant de cliquer sur le bouton Générer");
+      return;
+    }
+
     setLoading(true);
     setHtmlCode("");
     const newMessages: ChatCompletionMessageParam[] = [
